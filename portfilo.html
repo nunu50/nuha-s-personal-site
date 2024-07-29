@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Responsive Online Education Website Design</title>
+    <!--font awesome cdn link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!--css file-->
+    <link rel="stylesheet" href="portfilo.css">
+</head>
+
+<body>
+    <header>
+
+        <a href="#" class="logo">My Portfilo.</a>
+        <nav class="navbar">
+            <ul>
+                <li><a href="#home" class="active">home</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">contact</a></li>
+                <!--  
+                   <li><a href="#project">projects</a></li>   
+              <li><a href="#review">Review</a></li> 
+              -->
+            </ul>
+        </nav>
+        <div class="fas fa-bars"></div>
+
+    </header>
+
+
+    <!--home section-->
+    <section id="home" class="home">
+        <div class="content">
+            <h1>Hello, I'm Nuha</h1>
+            <p>I'm a front-end developer. I'm passionate about
+            creating captivating online experiences.My goal is to craft user-friendly websites that leave a lasting impression.</p>
+            <a href="#skills"><button>Discover My Skills</button></a>
+        </div>
+        
+        <div class="box-container">
+            <div class="box">
+                <i class="fas fa-person"></i>
+                <h3>About Me</h3>
+                <p>I believe in the power of creativity to transform ideas into captivating experiences.</p>
+            </div>
+            <div class="box">
+                <i class="fas fa-fire"></i>
+                <h3>What Drives Me</h3>
+                <p>Beyond pixels and code, I find inspiration in everyday moments.</p>
+            </div>
+            <div class="box">
+                <i class="fa-solid fa-handshake-simple"></i>
+                <h3>Let's Collaborate</h3>
+                <p>I'm dedicated to crafting designs that resonate with audiences. I'm here to bring your vision to life.</p>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!--skills section -->
+
+    <section class="teacher" id="skills">
+        <h1 class="heading">My Skills</h1>
+        <h3 class="title"><q>The expert in anything was once a beginner.</q>- Helen Hayes</h3>
+        <div class="card-container">
+                <img src="html.png" alt="">
+                <img src="css.png" alt="">
+                <img src="js.png" alt=""> 
+                <img src="figma.png" alt=""> 
+    </section>
+    <!--course sectionn-->
+
+    <section class="course" id="services">
+        <h1 class="heading">My Service</h1>
+        <h3 class="title"><q>Design is not just what it looks like and feels like. Design is how it works.</q>-Steve Jobs</h3>
+        <div class="box-container">
+            <div class="box">
+            <i class="fa-brands fa-web-awesome"></i>
+                <h3>landing pages</h3>
+                <p>i can  create visually appealing and user-friendly landing pages tailored to your brand and campaign goals.</p>
+            </div>
+            <div class="box">
+            <i class="fa-solid fa-ranking-star"></i>
+                <h3>branding pages</h3>
+                <p>Develop comprehensive branding pages that communicate your brand story, values, and identity effectively.</p>
+            </div>
+        </div>
+    </section>
+
+    <!--contact section-->
+
+    <section class="contact" id="contact">
+    <div class="row">
+    <div class="image">
+     <img src="undraw_personal_email_re_4lx7.svg" alt="">
+    </div>
+    <div class="form-container">
+<form action="https://api.web3forms.com/submit" method="POST">
+    <input type="hidden" name="access_key" value="161844b4-06bc-4d09-941c-d758a275750c">
+        <label for="name"></label>
+        <input type="text" placeholder="full name" id="name" required>
+        <label for="email"></label>
+         <input type="email" placeholder="enter your email" id="email" required>
+         <label for="subject"></label>
+         <input type="text" placeholder="Subject" id="subject" required>
+        <label for="message"></label>
+        <textarea name="message" id="message" cols="30" rows="10" placeholder="message" required></textarea>
+    <button type="submit" value="message">Send Message</button>
+                </form>
+            </div>
+
+        </div>
+
+    </section>
+    <section class="footer" id="footer">
+        <div class="icons">
+            <a href="https://t.me/madebynuha" class="fab fa-telegram"></a>
+            <a href="https://www.instagram.com/made_b.y_nunu/" class="fab fa-instagram"></a>
+            <a href="https://www.pinterest.com/nuhsam/" class="fab fa-pinterest"></a>
+        </div>
+        <div class="credit">created by <span>Nuha</span> | all right reserved</div>
+    </section>
+<!--AOS animation-->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({ offset: 1, });
+</script>
+
+
+    <!--jquery cdn link-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!--js file-->
+    <script src="portfilo.js"></script>
+
+
+    <script>
+        const form = document.getElementById('form');
+        const result = document.getElementById('result');
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const formData = new FormData(form);
+            const object = Object.fromEntries(formData);
+            const json = JSON.stringify(object);
+            result.innerHTML = "Please wait..."
+
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: json
+            })
+                .then(async (response) => {
+                    let json = await response.json();
+                    if (response.status == 200) {
+                        result.innerHTML = "Form submitted successfully";
+                    } else {
+                        console.log(response);
+                        result.innerHTML = json.message;
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                    result.innerHTML = "Something went wrong!";
+                })
+                .then(function () {
+                    form.reset();
+                    setTimeout(() => {
+                        result.style.display = "none";
+                    }, 3000);
+                });
+        });
+    </script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+        <section id="projects">
+            <button class="btn"></button>
+            <div class="myproject"></div>
+            <button class="btn"></button>
+            <div class="myproject"></div>
+            <button class="btn"></button>
+            <div class="myproject"></div>
+        </section>
+        
+        <div class="topic">Have Any Project ?</div>
+
+       
+    -->
+<!--review section
+
+    <section class="review" id="review">
+        <h1 class="heading">students review</h1>
+        <h3 class="title">what our students says about us</h3>
+        <div class="box-container">
+            <div class="box">
+                <img src="daria-pimkina-tYaccl19A3Q-unsplash.jpg" alt="">
+                <h3>someone's name</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit labore quaerat deleniti voluptas,
+                    hic ipsum ducimus.</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+            </div>
+            <div class="box">
+                <img src="linkedin-sales-solutions-NpyF7rjqmq4-unsplash.jpg" alt="">
+                <h3>someone's name</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit labore quaerat deleniti voluptas,
+                    hic ipsum
+                    ducimus.</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+            </div>
+            <div class="box">
+                <img src="thisisengineering-TXxiFuQLBKQ-unsplash.jpg" alt="">
+                <h3>someone's name</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit labore quaerat deleniti voluptas,
+                    hic ipsum
+                    ducimus.</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+            </div>
+
+        </div>
+    </section>
+-->
